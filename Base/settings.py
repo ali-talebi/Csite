@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "home.apps.HomeConfig" ,
     'django_jalali' ,
+    'Profile.apps.ProfileConfig' ,
 ]
 
 MIDDLEWARE = [
@@ -78,12 +79,12 @@ WSGI_APPLICATION = "Base.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME" : "Csite$CSITE2" ,
-        "USER" : "Csite" ,
-        "PASSWORD" : "13781378Ali" ,
-        "HOST" : "Csite.mysql.pythonanywhere-services.com" ,
-        'PORT' : '3306'
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME" : "crawel" ,
+        "USER" : "postgres" ,
+        "PASSWORD" : "postgres" ,
+        "HOST" : "localhost" ,
+        'PORT' : '5432'
     }
 }
 
@@ -132,3 +133,5 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = '/login/'
