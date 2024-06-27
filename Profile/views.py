@@ -13,7 +13,7 @@ class SignUpView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated :
-            return redirect('home:home')
+            return redirect("/")
         return super().dispatch(request, *args, **kwargs)
 
     form = SignupForm
@@ -26,9 +26,9 @@ class SignUpView(View):
         if form.is_valid():
             new_username = form.cleaned_data['username']
             new_email = form.cleaned_data['email']
-            new_password = form.cleaned_data['password2']
+            new_password = form.cleaned_data['password1']
 
-            user = User.objects.create_user(username = new_username , email = new_email ,password =new_password )
+            user = User.objects.create_user(username = new_username , email = new_email , password = new_password )
             new_profile = AccountInformation(person = user )
             new_profile.save()
             messages.success(request, 'با موفقیت حساب کاربری ساخته شد' , 'success' )

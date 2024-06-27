@@ -104,7 +104,7 @@ class DetailView(View) :
         link_data = self.data.total_link
         for i in link_data.split(','):
             self.links.append(i)
-            print(i)
+
 
         return super().setup(request, *args, **kwargs)
 

@@ -37,16 +37,18 @@ def GET_DATA_WITH_LINK_FUNC(url) :
 
 
 
-
+    s_  = ""
     p_tags = soup.find_all('p')
-    p_tag = []
-    for tag in p_tags:
-        p_ = tag.text
-        p_tag.append(p_)
+    for p_tag in p_tags:
+        p_text = p_tag.get_text(strip=True)
+        a_tags = p_tag.find_all('a')
+        a_texts = [a_tag.get_text(strip=True) for a_tag in a_tags]
+        p_link_a = ', '.join(a_texts)
+        p_tag.append(p_text)
+        p_tag.append(p_link_a)
+        s_ += p_text
+        s_ += p_link_a
 
-    s_ = ""
-    for i in p_tags:
-        s_ += f"{i} . "
 
     server_name = " "
     if response.headers['server'] :
