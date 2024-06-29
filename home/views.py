@@ -1,3 +1,5 @@
+from urllib import request
+
 from django.shortcuts import render , redirect
 from .models import Search_Domain , Guideline
 from django.views import View
@@ -75,7 +77,7 @@ class HomeView(View):
                             first_s_ += f"{i} . "
                     except Exception as e:
                         messages.error(request , e , 'error' )
-                        return redirect('home:home' )
+                        return redirect('home:error' )
                     finally:
                         new_instance = Search_Domain(domain_name=domain , serch_level = 2 ,  status = first_status_code , total_text= first_s_ , total_link=first_a_link , server=first_server_name  , summary="No summer" , classify = "Not Determined"  )
                         new_instance.save()
@@ -84,7 +86,7 @@ class HomeView(View):
 
             except Exception as e:
                 messages.error(request , e , 'error' )
-                return redirect('home:home' )
+                return redirect('home:error' )
 
         else :
             messages.error(request, "خطایی وجود دارد " , 'error')
@@ -133,9 +135,13 @@ class GuideView(View) :
     def post(self , request ) :
         return render(request , self.template_name, {'data': self.data})
 
+class ErrorView(View) :
 
-
-
+    template_name = 'error_page.html'
+    def get(self ,request ):
+        return render(request , self.template_name, {})
+    def post(self ,request ):
+        return render(request , self.template_name, {})
 
 
 
