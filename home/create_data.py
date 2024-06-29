@@ -8,4 +8,6 @@ def Create_data(path) :
             yield new_line
 
 
+    file.close()
+
 
